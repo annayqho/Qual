@@ -1,0 +1,261 @@
+% Simple article, but with some useful ApJ things included
+% Created by AYQH, 18 June 2016
+\documentclass[12pt, letterpaper, preprint]{aastex}
+\bibliographystyle{apj}
+\usepackage{float, bm, graphicx, subfigure, amsmath, morefloats}
+\usepackage{color}
+\usepackage{tabularx}
+
+% useful macros
+\newcommand{\angstrom}{\mbox{\AA}}
+
+\begin{document}
+
+\title{2015 ``Will Ask'' Qual Questions}
+
+\section*{Radiative Processes}
+
+\begin{enumerate}
+
+  \item \textbf{Derive the total power and characteristic frequency 
+      of synchrotron radiation from a relativistic particle of mass $m$, 
+      charge $e$, and energy $E$ moving in a magnetic field $B$. 
+      Use this to explain why synchrotron radiation is generally 
+      negligible for protons.}
+
+\textbf{Synchrotron radiation} is the energy radiated by a relativistic 
+charged particle as it moves in a magnetic field.
+
+Let's consider the case of an electron moving in a uniform 
+external magnetic field.
+The electron experiences a Lorentz force:
+
+\begin{equation}
+  \textbf{F} = e \, (\frac{\mathbf{v}}{c} \times \mathbf{B})
+  \label{lorentz-force}
+\end{equation}
+
+The equation of motion of the particle can thus be written
+
+\begin{equation}
+  \textbf{F} = \frac{d \mathbf{p}}{dt} = \frac{d (\gamma m \mathbf{v})}{dt}
+  = \gamma m \frac{d \mathbf{v}}{dt} 
+  = e \, (\frac{\mathbf{v}}{c} \times \mathbf{B})
+  \label{eom}
+\end{equation}
+
+Notice that the electron's speed does not change, because
+the magnetic field can only act perpendicular to its motion.
+Thus, only the direction of the electron can change.
+From this, you can see that both the parallel and perpendicular
+components of the velocity (wrt the magnetic field) remain constant.
+
+The net result is that you have a constant magnetic field in which
+an electron is moving along a field line on a uniform helical path
+(or with zero velocity along a field line, a circular path)
+with a constant linear and angular speed. 
+There is no force along a field line. 
+
+The quantity $\frac{d\mathbf{v}}{dt}$ is acceleration.
+Solve for it:
+
+\begin{equation}
+  \mathbf{a} = \frac{e (\mathbf{v} \times \mathbf{B})}{\gamma m c}
+  \label{<++>}
+\end{equation}
+
+And in the instantaneous inertial frame of the electron,
+the velocity is perpendicular to the magnetic field and
+we can regard the acceleration as the centripetal acceleration.
+$\frac{v^2}{r}$. Setting $v = r \omega$, we get a
+characteristic frequency at which the electron is
+spiralling, called the \textbf{gyrofrequency}:
+
+\begin{equation}
+  \omega_g = \frac{eB}{\gamma m_e c}
+  \label{gyrofrequency}
+\end{equation}
+
+This is, however, not the characteristic frequency
+that we observe. We must take into account a number
+of relativistic effects, including that power must
+be multiplied by $\gamma^2$, a combination of
+relativistic beaming and Doppler effect that turns
+a sinusoidal light curve into a series of sharp pulses.
+The resulting radiation spectrum peaks at $\gamma^3 \omega_g$
+which is three times the gyrofrequency.
+
+The \textbf{relativistic Larmor formula} gives the power radiated
+from a single relativistic electron:
+
+\begin{equation}
+  P = \frac{2}{3} \frac{\gamma^4 e^2 a^2}{c^3}
+  \label{larmor-formula}
+\end{equation}
+
+You can derive it via Lorentz transformations,
+taking the non-relativistic Larmor formula to hold
+true in the frame of the particle.
+
+Using our expression for acceleration above,
+we get that the power radiated is
+
+\begin{equation}
+  P = \frac{4}{3} \, \sigma_T \, c \, \gamma^2 \, \beta^2 \, u_B
+  \label{relativistic-larmor}
+\end{equation}
+
+The synchrotron radiation loss for a particle scales
+like its gamma. So the loss rate for an electron is
+over $10^{13}$ times the loss for a proton of the same energy.
+(I think that it's just because of the mass?)
+
+  \item \textbf{Explain the connection between detailed balance, 
+    the Einstein A and B relations,
+    Kirchoff’s law and the Milne relations, 
+    and give an example of their use to connect the
+    bremsstrahlung emission spectrum and the free-free absorption coefficient.}
+
+The Einstein relations link together atomic properties and
+thus macroscopic conditions (like thermal equilibrium) don't matter.
+Consider a two-level system, the top level characterized by
+$L_2, g_2$ and the bottom level characterized by $L_1, g_1$. 
+The energy gap is $h\nu$. The different Einstein coefficients
+characterize the transition probability per unit time for
+three different mechanisms: $A_{21}$ for spontaneous emission
+(no radiation field required), $B_{12} \bar{J}$ for absorption,
+and $B_{21} \bar{J}$ for stimulated emission.
+
+\begin{equation}
+  \bar{J} \equiv \int_0^\infty J_\nu \phi(\nu) d\nu
+  \label{jbar}
+\end{equation}
+
+Note that the B's are both proportional to the mean intensity
+of the radiation field.
+
+The detailed balance equation says that the number of transitions into level 2
+equals the number of transitions out of level 2. In other words,
+in thermal equilibrium, the number of transitions into an atomic state
+equals the number of transitions out of the state. 
+It can be written as follows:
+
+\begin{equation}
+  n_1 B_{12} \bar{J} = n_2 B_{21} \bar{J} + n_2 A_{21}
+  \label{detailed-balance}
+\end{equation}
+
+The Boltzmann Equation governing thermal equilibrium is
+
+\begin{equation}
+  \frac{n_1}{n_2} = \frac{g_1}{g_2} e^{h \nu / k_B T}
+  \label{boltzmann-eq}
+\end{equation}
+
+Using this to solve for $\bar{J}$ we get
+
+$$ \bar{J} = \frac{A_{21} / B_{21}}{(g_1 B_{12}/g_2 B_{21}) e^{h\nu/kT} - 1} $$
+
+This is equal to 
+
+$$ B_\nu = \frac{2 h \nu^3}{c^2} \frac{1}{e^{h\nu/kT}-1} $$
+
+This gives the Einstein relations:
+
+\begin{equation}
+  \frac{A_{21}}{B_{21}} = \frac{2 h \nu^3}{c^2}
+  \label{einstein-A}
+\end{equation}
+
+\begin{equation}
+  g_1 B_{12} = g_2 B_{21}
+  \label{einstein-B}
+\end{equation}
+
+Notice that the temperature dependence drops,
+so the Einstein relations hold even outside of
+thermal equilibrium.
+
+\textbf{Kirchoff's law for thermal equilibrium}
+says that a good emitter is a good absorber, in
+thermal equilibrium. The moral of the story is that
+there is clearly a relationship between emission
+and absorption at a microscopic level.
+
+\begin{equation}
+  j_\nu = \alpha_\nu B_\nu (T)
+  \label{kirchoff-law}
+\end{equation}
+
+The \textbf{Milne Relation} governs the inverse process
+of photoionization, that is an ion recapturing an electron
+and emitting a photon. Let $\sigma_{fb}$ be the cross-section
+for recapture. We assume complete thermal equilibrium
+and derive a result that will end up being independent of
+thermal equilibrium. 
+
+Thermal equilibrium dictates that the rate of radiative
+recombinations must equal the rate of photoionization.
+
+\textbf{Bremsstrahlung}, or \textbf{free-free emission},
+involves an electron whizzing by an ion. There is radiation
+emitted due to the acceleration of charge in the Coulomb field
+of another charge.
+
+Remember, a good emitter is a good absorber. Using Kirchoff's Law,
+
+$$ j_\nu^{ff} = \alpha_\nu^{ff} B_\nu (T) $$
+
+\begin{equation}
+  \frac{dW}{dt dV dv} = \epsilon_\nu^{ff} = 4 \pi j_\nu^{ff} 
+  = 6.8 \times 10^{-38} T^{-1/2} Z^2 n_e n_i e^{h \nu / kT}
+  \bar{g}^{ff} (\nu,T)
+  \label{bremsstrahlung}
+\end{equation}
+
+But you also have Kirchhoff's Law (thermal); both of these
+processes are happening because we're in thermal equilibrium.
+$S_\nu = B_\nu$, and $j_\nu = \alpha_\nu B_\nu$. 
+
+\begin{equation}
+  \alpha_\nu^{ff} = 3.7 \times 10^8 T^{-1/2} Z^2 n_e n_i \nu^{-3}
+  (1-e^{-h\nu/kT}) g^{ff}
+\end{equation}
+
+In the Wien limit, you get $\alpha_\nu^{ff} \propto \nu^{-3} T_{-1/2}$.
+In the RJ limit, you get $\alpha_\nu^{ff} \propto \nu^{-2} T^{-3/2}$.
+
+So, you preferantially absorb low-energy electrons.
+
+
+  \item Draw the energy levels of the hydrogen atom and 
+    identify which transitions are allowed. 
+    Which ones are in the visible part of the spectrum? 
+    Which level has no allowed decays, and what is its main decay mode?
+\end{enumerate}
+
+\section*{Instrumentation}
+
+\begin{enumerate}
+  \item \textbf{Describe quantitatively the point spread function 
+      of a diffraction-limited optical telescope. 
+      Explain how diffraction spikes arise, 
+      and what determines their position and intensities. 
+      Under what circumstances will the PSF be broadened by atmospheric
+      turbulence?}
+\end{enumerate}
+
+\section*{Stars}
+\begin{enumerate}
+  \item \textbf{Explain what the Hayashi track is, 
+      and describe what types of objects live on it.
+      Qualitatively explain how it arises and what 
+      assumptions are required for its derivation.}
+  \item \textbf{Estimate the temperature as a function 
+      of depth in the Sun’s convection zone.
+      What is the temperature at the base of the convection zone?}
+\end{enumerate}
+
+\end{document}
+
+
