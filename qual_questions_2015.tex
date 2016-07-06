@@ -6,8 +6,17 @@
 \usepackage{color}
 \usepackage{tabularx}
 
+\setlength\parindent{0pt}
+
 % useful macros
+\newcommand{\ledd}{L_{\mathrm{Edd}}}
+\newcommand{\medd}{\dot{M}_{\mathrm{Edd}}}
+\newcommand{\Comment}[2]{ [{\color{red}\sc #1 :} {{\color{cyan} \it #2}}]}
+\newcommand{\gcm}{g/$\mathrm{cm}^3$}
 \newcommand{\angstrom}{\mbox{\AA}}
+\newcommand{\vel}{\textbf{v}}
+\newcommand{\bfield}{\textbf{B}}
+\newcommand{\acc}{\textbf{a}}
 
 \begin{document}
 
@@ -23,92 +32,113 @@
       Use this to explain why synchrotron radiation is generally 
       negligible for protons.}
 
-\textbf{Synchrotron radiation} is the energy radiated by a relativistic 
-charged particle as it moves in a magnetic field.
-
-Let's consider the case of an electron moving in a uniform 
-external magnetic field.
-The electron experiences a Lorentz force:
-
-\begin{equation}
-  \textbf{F} = e \, (\frac{\mathbf{v}}{c} \times \mathbf{B})
-  \label{lorentz-force}
-\end{equation}
-
-The equation of motion of the particle can thus be written
-
-\begin{equation}
-  \textbf{F} = \frac{d \mathbf{p}}{dt} = \frac{d (\gamma m \mathbf{v})}{dt}
-  = \gamma m \frac{d \mathbf{v}}{dt} 
-  = e \, (\frac{\mathbf{v}}{c} \times \mathbf{B})
-  \label{eom}
-\end{equation}
-
-Notice that the electron's speed does not change, because
-the magnetic field can only act perpendicular to its motion.
-Thus, only the direction of the electron can change.
-From this, you can see that both the parallel and perpendicular
-components of the velocity (wrt the magnetic field) remain constant.
-
-The net result is that you have a constant magnetic field in which
-an electron is moving along a field line on a uniform helical path
-(or with zero velocity along a field line, a circular path)
-with a constant linear and angular speed. 
-There is no force along a field line. 
-
-The quantity $\frac{d\mathbf{v}}{dt}$ is acceleration.
-Solve for it:
-
-\begin{equation}
-  \mathbf{a} = \frac{e (\mathbf{v} \times \mathbf{B})}{\gamma m c}
-  \label{<++>}
-\end{equation}
-
-And in the instantaneous inertial frame of the electron,
-the velocity is perpendicular to the magnetic field and
-we can regard the acceleration as the centripetal acceleration.
-$\frac{v^2}{r}$. Setting $v = r \omega$, we get a
-characteristic frequency at which the electron is
-spiralling, called the \textbf{gyrofrequency}:
-
-\begin{equation}
-  \omega_g = \frac{eB}{\gamma m_e c}
-  \label{gyrofrequency}
-\end{equation}
-
-This is, however, not the characteristic frequency
-that we observe. We must take into account a number
-of relativistic effects, including that power must
-be multiplied by $\gamma^2$, a combination of
-relativistic beaming and Doppler effect that turns
-a sinusoidal light curve into a series of sharp pulses.
-The resulting radiation spectrum peaks at $\gamma^3 \omega_g$
-which is three times the gyrofrequency.
-
-The \textbf{relativistic Larmor formula} gives the power radiated
-from a single relativistic electron:
-
-\begin{equation}
-  P = \frac{2}{3} \frac{\gamma^4 e^2 a^2}{c^3}
-  \label{larmor-formula}
-\end{equation}
-
-You can derive it via Lorentz transformations,
-taking the non-relativistic Larmor formula to hold
-true in the frame of the particle.
-
-Using our expression for acceleration above,
-we get that the power radiated is
+The total power is
 
 \begin{equation}
   P = \frac{4}{3} \, \sigma_T \, c \, \gamma^2 \, \beta^2 \, u_B
+  \label{eq:relativistic-larmor}
+\end{equation}
+
+where $\sigma_T$ is the Thomson cross section $\frac{8}{3} \pi r_0^2$,
+$u_B$ is the magnetic energy density $\frac{B}{8 \pi}$.
+
+The characteristic frequency of gyration is
+
+\begin{equation}
+\omega_g = \frac{eB}{\gamma mc}
+\end{equation}
+
+To derive this, begin with the equation of motion resulting from the Lorentz force:
+
+\begin{equation}
+  \frac{d}{dt} (\gamma m \vel) = \frac{e}{c} \, (\vel \times \mathbf{B})
+  \label{eq:lorentz-force}
+\end{equation}
+
+For a particle with constant energy $E = \gamma m c^2$,
+we can take $\gamma$ to be constant.
+Therefore, Equation \ref{eq:lorentz-force} can be rewritten
+
+\begin{equation}
+  \frac{d \vel}{dt} = \frac{e}{\gamma m c} \, (\vel \times \mathbf{B})
+  \label{eq:lorentz-force-rearranged}
+\end{equation}
+
+Because of the cross product in Equation \ref{eq:lorentz-force-rearranged}, the magnetic field only changes the component of the velocity that is perpendicular to it. Thus, Equation \ref{eq:lorentz-force-rearranged} can be rewritten
+
+\begin{equation}
+  \acc = \frac{d \vel_\bot}{dt} = \frac{e}{\gamma m c} \, (\vel_\bot \times \mathbf{B})
+  \label{eq:lorentz-force-perp}
+\end{equation}
+
+Because $\vel_\parallel$ and $\vel_\mathrm{tot}$ are constant,
+$\vel_\bot$ must be constant as well. Assuming an unchanging magnetic field, the acceleration in Equation \ref{eq:lorentz-force-perp} is constant. We thus have uniform circular motion in the ($\vel_\bot$, \bfield) plane. Together with the constant velocity normal to this plane, we have helical motion.
+
+Because the motion is circular, the acceleration in Equation \ref{eq:lorentz-force-perp} can be taken to be a centripetal acceleration
+with magnitude
+
+\begin{equation}
+a = v_\bot \omega_g = \frac{e v_\bot B}{\gamma m c}
+\label{eq:acc}
+\end{equation}
+
+So, the corresponding characteristic frequency of rotation is
+
+\begin{equation}
+\omega_g = \frac{e B}{\gamma m c}
+\end{equation}
+
+To calculate the power, we use the \textbf{relativistic Larmor formula}
+which gives the power radiated by a particle moving at relativistic speeds. It is derived via Lorentz transformations, taking the non-relativistic Larmor formula to hold true in the frame of the particle.
+We use only one term of it, since the acceleration is perpendicular to the velocity.
+
+\begin{equation}
+  P = \frac{2}{3} \frac{\gamma^4 e^2 a^2}{c^3}
+  \label{rel-larmor-formula}
+\end{equation}
+
+Now we plug in our expression for acceleration in Equation \ref{eq:acc} and average the formula over all angles (assuming an isotropic distribution of velocities). If $\alpha$ is the angle between the velocity of the particle and the magnetic field, 
+
+\begin{equation}
+\langle v_\bot^2 \rangle = \frac{v^2}{4 \pi} \int \sin^2 \alpha \, d\Omega
+= \frac{2}{3} v^2
+\end{equation}
+
+With this averaging and some substitutions,
+
+\begin{equation}
+  P = \frac{4}{3} \, \sigma_T \, c \, \gamma^2 \, \beta_\bot^2 \, u_B
   \label{relativistic-larmor}
 \end{equation}
 
-The synchrotron radiation loss for a particle scales
-like its gamma. So the loss rate for an electron is
-over $10^{13}$ times the loss for a proton of the same energy.
-(I think that it's just because of the mass?)
+The timescale on which power is lost due to sycnchrotron radiation
+is about $\frac{E}{dE/dt}$. Since $E \sim \gamma m_0 c^2$ and
+$ P = dE/dt$, we find that the timescale scales as $\gamma$. 
+$\gamma$ itself scales as $E/E_0$ where $E_0$ is the rest mass energy
+of the particle. This is roughly 0.511\,MeV for an electron and 938\,MeV
+for a proton. So, for a given energy, the timescale is much longer
+for a proton than it is for an electron.
+
+Also, note that $\omega_g$ is not actually the frequency of radiation.
+In practice, the frequency spectrum is complex and can extend up to many times $\omega_g$. Important effects include: 
+
+\begin{itemize}
+
+\item 
+Broad spectrum due to relativistic beaming: the particle's radiation is beamed within $1/\gamma$ of a cone with half-angle equal to the pitch angle. This cone is the characteristic angular distribution of radiation emitted by a particle with perpendicular acceleration and velocity. Thus, instead of a sinusoidal light curve, you get a series of sharp pulses. Recall that the Fourier Transform of a short time pulse is a broad frequency spectrum with $\Delta \omega \sim 1/T$.
+
+\item
+The time between pulses is a factor of $\gamma^3$ narrower than what you'd get from $\omega_g$ due to the Doppler effect. 
+
+\item
+The single-particle spectrum extends to
+something of order $\omega_c$ before falling away,
+where $\omega_c \sim \gamma^3 \omega_g$. 
+
+\item
+The spectrum of a distribution of a population of relativistic electrons can be approximated by a power law over a limited range of frequencies. For a power law distribution of particle energies with index $p$ (that is, $N(E) dE = C E^{-p} dE$) over a sufficiently broad energy range, the spectral index of the radiation is $s = (p-1) / 2$. 
+
+\end{itemize}
 
   \item \textbf{Explain the connection between detailed balance, 
     the Einstein A and B relations,
@@ -254,6 +284,170 @@ So, you preferantially absorb low-energy electrons.
   \item \textbf{Estimate the temperature as a function 
       of depth in the Sun’s convection zone.
       What is the temperature at the base of the convection zone?}
+\end{enumerate}
+
+\section*{Galaxies}
+
+\begin{enumerate}
+
+\item \textbf{Define two-body relaxation and estimate its time scale in (a) a globular cluster, (b) the Milky Way's disk. In which cases is two-body relaxation important?}
+
+\item \textbf{Draw qualitatively the spectral energy distribution of the Milky Way, and describe how its morphology might appear to an external observer as a function of wavelength.}
+
+\item \textbf{Describe at least three methods to probe the gravitational potential of galaxies, their assumptions, and their realm of applicability.}
+
+\end{enumerate}
+
+\section*{High Energy}
+
+\begin{enumerate}
+
+\item \textbf{Derive, approximately or exactly up to dimensionless factors, the Bondi accretion rate onto a mass $M$ at rest in a homogeneous medium of density $\rho$ and speed of sound $c_s$. Explain the significance of the Bondi radius.}
+
+Bondi accretion is the spherical accretion of interacting particles. We're in the non-relativistic, steady state limit. 
+
+Begin with the Bernoulli Equation:
+
+\begin{equation}
+\frac{1}{2} u^2 + \int \frac{dP}{\rho} - \frac{GM}{r} = e = \mathrm{constant}
+\end{equation}
+
+Far away from the black hole, you can neglect the velocity $u$ because it goes as $\frac{1}{r^4}$. Out there, the conserved quantity is just the second two terms. You can write the first in terms of the sound speed:
+
+$$ \int \frac{dP}{\rho} = \frac{1}{\gamma-1} c_s^2 $$
+
+since $c_s^2 = \frac{\gamma P}{\rho}$. 
+
+Thus, we have the conservation statement
+
+$$ \frac{1}{\gamma-1} c_s^2 - \frac{GM}{r} = \frac{1}{\gamma-1} c_{s,\infty}^2 $$
+
+The Bondi radius is where the sound speed has changed by order unity from its original value. It defines the radius of influence of the black hole. And, it marks the transition from subsonic (far from the BH) to supersonic (close to the BH). 
+
+At supersonic speeds, 
+
+\begin{equation}
+r_\mathrm{Bondi} = \frac{GM}{c^2_\infty}
+\end{equation}
+
+At this transition point, the mass accretion rate is governed by conservation of mass:
+
+$$ \dot{M} = 4 \pi r^2 \rho u = 4 \pi \rho u \left(\frac{GM}{c^2_\infty}\right)^2 $$
+
+With some fudge factor $\lambda$,
+
+\begin{equation}
+\dot{M} = \lambda 4 \pi \left(\frac{GM}{c^2_\infty}\right)^2 \rho_\infty c_\infty
+\end{equation}
+
+\item \textbf{Discuss the difference between high-mass X-ray binaries and low mass X-ray binaries (both containing neutron stars). What are the typical spin period and magnetic fields of the neutron stars in the two types of system, and how are these measured or estimated? How are the spin period and magnetic fields changing with time?}
+
+In many X-ray binary systems, the spin period is observed to be decreasing steadily on a timescale of around 10,000 years. Presumably, this is caused by torques induced by the accretion process. Observed spin periods are usually between 1 second and 1000 seconds. 
+
+Observe LMXB (accretion from Roche lobe overflow, orbital period hours) with coherent X-ray pulsing. The X-ray pulsing continues even when the X-ray intensity drops by large factors. Surface magnetic field of around $10^9$\,G, far lower than the fields inferred in pulsing sources in HMXB (accretion from the stellar wind of a massive (O or B) star, orbital period $\sim$months, $B \sim 10^{12}$\,G). May suggest that the fields decay, perhaps as a result of accretion. You can also measure weak magnetic fields from quasi-periodic oscillations detected in the power spectra of LMXBs. Spin period on the order of milliseconds. These are the progenitors of the majority of millisecond pulsars. 
+
+HMXB systems emit x-ray pulsations, LMXB systems emit x-ray bursts.
+
+\item \textbf{Derive the equation for the effective temperature of an
+accretion disk around a black hole of mass $M$ with accretion rate
+$M_\odot$ as a function of radius $r$. Specify the assumptions
+required to get an answer, and comment on what could go wrong with them.
+Define the Eddington luminosity and explain its relevance to the peak
+frequency of the emitted radiation.}
+
+Consider a fully ionized gas and assume it's unmagnetized. There's some flux coming in and on average, photons come out perpendicular. The Thompson cross section is
+
+\begin{equation}
+\sigma_T = \frac{8 \pi}{3} \left( \frac{e^2}{m_e c^2} \right)^2
+\end{equation}
+
+So the radiation force is
+
+\begin{equation}
+\mathrm{Force} = \sigma_T \frac{F}{c}
+\end{equation}
+
+Now, assume that for each electron, radiation force balances gravity ($m_e g$) and solve for the luminosity limit for keeping electrons bound:
+
+$$ L_e < \frac{4 \pi G M m_e c}{\sigma_T} = 7 \times 10^{34} \left( \frac{M}{M_\odot} \right) \, \mathrm{erg/s}$$
+
+There are lots of stars, white dwarfs, and neutron stars that have much higher luminosity than this. The mistake is that we assumed that only the gravitational force was acting, but there's also a (stronger) electric force:
+
+$$ \frac{e Q}{r} > \frac{G M m_e} {r^2} $$
+
+When this is the case, you can estimate the \emph{fraction} of electrons that are lost by the number of electrons lost over the total number of electrons: $\frac{Q/e}{M/m_p}$. You can write this in terms of the ratio of proton mass to electron mass and the fine structure constant. When you do, you find that the number is \emph{tiny}: the moral is that there aren't that many electrons to be lost. 
+
+Instead of individual electrons, let's consider ions: you have to remove an entire ion with its electrons in order to unbind. The balance between gravitational force and radiation force becomes
+
+$$ M_{\mathrm{ion}} g = F_{\mathrm{rad, ion}} $$
+
+Since the electron mass is negligible compared to the proton mass, $M_{\mathrm{ion}} \sim A m_u$. $F_{\mathrm{rad, ion}}$ is just the sum of the radiation force on each electron, so $F_{\mathrm{rad, ion}} = Z F_{\mathrm{rad, e}}$. The maximum luminosity the star can have without losing ions to radiation is therefore: 
+
+$$ A m_u \frac{GM}{r^2} > \frac{L}{4 \pi r^2 c} Z \sigma_T $$
+
+This gives us our definition of the \textbf{Eddington luminosity}:
+
+\begin{equation}
+\ledd \equiv \frac{4 \pi G M c}{Z \sigma_T / A m_u} = \frac{4 \pi G M c}{\sigma_T (1 + X) / (2 m_u)}
+\end{equation}
+
+where $X$ is the hydrogen mass fraction. 
+
+To estimate a numerical value for this, put it in terms of the $L_e$ that we solved for earlier, and the $m_p/m_e$ ratio. This gives:
+
+$$ \ledd = 1.3 \times 10^{38} \frac{2}{1+X} \left( \frac{M}{M_\odot} \right) \mathrm{erg/s} $$
+
+This could be violated under the following circumstances:
+
+\begin{enumerate}
+\item Different opacity: dust or photoionization (this is why red giants have enormous dusty winds) or strong magnetic fields (quantum electrodynamic effects).
+\item Electrons are actually not bound; instead, they're flowing out due to a wind (radiation convection).
+\end{enumerate}
+
+When you accrete, you basically drop stuff onto a hard surface. The energy released is the change in potential energy $ \frac{G M \dot{M} }{R} $. In order to accrete, you must be radiating below $\ledd$; otherwise, the effective gravity would be in the other direction. So, $\ledd$ sets the maximum luminosity above which the object can no longer accrete. This therefore corresponds to a maximum mass accretion rate:
+
+\begin{equation}
+\medd \equiv \frac{4 \pi c R}{\sigma_T (1 + X) / 2 m_u}
+\end{equation}
+
+Numerically,
+
+$$ \medd = 1.5 \times 10^{-8} \, \frac{M_\odot}{\mathrm{yr}} \left( \frac{R}{10\,\mathrm{km}} \right) \left( \frac{2}{1+X} \right) $$
+
+\textcolor{red}{In short, radiation pressure on electrons balances with gravity on nuclei. $\mathrm{Force}=\mathrm{Flux} \times \bar{Z}\sigma_{T}/c=GM \bar{A}m_u/r^2$. For disk accretion, radiation is not necessarily to be isotropic. }
+
+\end{enumerate}
+
+\section*{ISM}
+
+\begin{enumerate}
+
+\item \textbf{Discuss the principal heating mechanisms and cooling
+transitions which determine the temperature of the principal phases
+of the interstellar medium: cold molecular, warm neutral, warm
+ionized, and hot ionized.}
+
+\item \textbf{Explain how the temperature, density, ionizing spectrum
+and element abundances of an HII region can be estimated using
+measurements of different line transitions.}
+
+\item \textbf{Derive the dimensional scaling of the Jeans' length for
+gravitational instability (remember you can do this either based on
+formal stability analysis, or to order of magnitude from physical arguments.) Discuss its relevance to star formation.}
+
+\end{enumerate}
+
+\section*{Extragalactic/Cosmology}
+
+\begin{enumerate}
+
+\item \textbf{Put on a timeline, and describe the principal events in the
+thermal history of the universe, from $kT=10\,TeV$ to $kT = 0.1\,eV$.}
+
+\item \textbf{Give a semi-quantitative discussion of the connection between fluctuations of the CMB on angular scales of arcminutes to degrees, and the baryonic structure (galaxies, clusters, correlations of galaxies) observed in the local universe, redshift $z < 0.5$.}
+
+\item \textbf{Which elements/isotopes are produced in BBN and in what quantities? Explain qualitatively how the yield of each depends on the cosmic baryon density and why.}
+
 \end{enumerate}
 
 \end{document}
