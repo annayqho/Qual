@@ -24,16 +24,40 @@
 
 \section*{Radiative Processes}
 
-There is a distinction between \emph{thermal radiation}
-and \emph{blackbody radiation}.
-The term \emph{thermal radiation} is a statement about the
-matter emitting the radiation: that the matter is in thermal
-equilibrium (with its surroundings).
-$S_\nu = B_\nu$.
-The term \emph{blackbody radiation} is a statement about the
-radiation itself: that it itself is in thermal equilibrium.
-It is the limit of thermal radiation for optically thick media.
-In this limit, $I_\nu = B_\nu$.
+\subsection*{The life of a light ray}
+
+Consider a ray of light that has some specific intensity
+described by the Planck function $B_\nu (T)$
+before it passes through a blob of material.
+As it passes through the blob, energy is added and
+subtracted by emission and absorption.
+This is summarized by the transfer equation:
+
+\begin{equation}
+\frac{dI_\nu}{d \tau_\nu} = -I_\nu + S_\nu
+\end{equation}
+
+where the source function is a property of the blob
+and is defined as the ratio of the
+emission coefficient to the absorption coefficient,
+$S_\nu \equiv \frac{j_\nu}{\alpha_\nu} $. 
+More intuitively (in my opinion) it can be thought of as the quantity that the specific intensity of a ray of light tries to approach, and does if given sufficient optical depth
+(a combination of the absorptive properties of the material
+and the distance over which the light has to be absorbed).
+
+Now, we're ready to distinguish between the concepts of
+\emph{thermal emission} and \emph{blackbody emission}.
+\emph{Thermal emission} is really a statement about the
+blob: that it itself is in thermal equilibrium,
+such that its source function follows the Planck function,
+$S_\nu = B_\nu (T)$
+
+The term \emph{blackbody radiation} is a stronger statement,
+one about the radiation: not only was the blob encouraging
+the radiation to relax into a blackbody spectrum,
+the radiation actually had enough distance - and/or the blob
+enough absorptive power - for its specific intensity to
+be the Planck function, $I_\nu (T) = B_\nu (T)$.
 
 \section*{Instrumentation}
 

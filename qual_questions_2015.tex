@@ -142,83 +142,83 @@ The spectrum of a distribution of a population of relativistic electrons can be 
 
   \item \textbf{Explain the connection between detailed balance, 
     the Einstein A and B relations,
-    Kirchoff’s law and the Milne relations, 
+    Kirchoff's law and the Milne relations, 
     and give an example of their use to connect the
     bremsstrahlung emission spectrum and the free-free absorption coefficient.}
+    
+\textbf{Detailed balance relations} govern the relationship between inverse processes on an atomic scale.
+These processes could be transitions between atomic states
+(the \textbf{Einstein A and B relations})
+or photoionization and recombination (the \textbf{Milne relations}).
+These atomic relationships are indifferent to whether the system is in thermal equilibrium: they don't care about the distribution of the intensity of radiation or the velocities of particles.
+And yet, they are intimately connected to macroscopic-level relationships that \emph{do} depend on thermal conditions.
+For example, the Einstein A and B relations
+are implied by the macroscopic relationship between
+emission and absorption (\textbf{Kirchoff's Law}).
+Similarly, the \textbf{Bremsstrahlung emission spectrum} 
+is intimately connected with absorption on an atomic scale characterized by the \textbf{free-free absorption coefficient}.
 
-I suspect that the key connecting concept here is \emph{thermal radiation}:
-radiation emitted by matter that is in thermal equilibrium.
+Here are the relations in more detail.
 
-The Einstein relations link together atomic properties and
-thus macroscopic conditions (like thermal equilibrium) don't matter.
-Consider a two-level system, the top level characterized by
-$L_2, g_2$ and the bottom level characterized by $L_1, g_1$. 
-The energy gap is $h\nu$. The different Einstein coefficients
-characterize the transition probability per unit time for
-three different mechanisms: $A_{21}$ for spontaneous emission
-(no radiation field required), $B_{12} \bar{J}$ for absorption,
-and $B_{21} \bar{J}$ for stimulated emission.
-
-\begin{equation}
-  \bar{J} \equiv \int_0^\infty J_\nu \phi(\nu) d\nu
-  \label{jbar}
-\end{equation}
-
-Note that the B's are both proportional to the mean intensity
-of the radiation field.
-
-The detailed balance equation says that the number of transitions into level 2
-equals the number of transitions out of level 2. In other words,
-in thermal equilibrium, the number of transitions into an atomic state
-equals the number of transitions out of the state. 
-It can be written as follows:
-
-\begin{equation}
-  n_1 B_{12} \bar{J} = n_2 B_{21} \bar{J} + n_2 A_{21}
-  \label{detailed-balance}
-\end{equation}
-
-The Boltzmann Equation governing thermal equilibrium is
-
-\begin{equation}
-  \frac{n_1}{n_2} = \frac{g_1}{g_2} e^{h \nu / k_B T}
-  \label{boltzmann-eq}
-\end{equation}
-
-Using this to solve for $\bar{J}$ we get
-
-$$ \bar{J} = \frac{A_{21} / B_{21}}{(g_1 B_{12}/g_2 B_{21}) e^{h\nu/kT} - 1} $$
-
-This is equal to 
-
-$$ B_\nu = \frac{2 h \nu^3}{c^2} \frac{1}{e^{h\nu/kT}-1} $$
-
-This gives the Einstein relations:
-
-\begin{equation}
-  \frac{A_{21}}{B_{21}} = \frac{2 h \nu^3}{c^2}
-  \label{einstein-A}
-\end{equation}
+To understand the \textbf{Einstein A and B relations},
+consider a system with two discrete energy levels 
+$L_1$ and $L_2$ with statistical weights $g_1$ and $g_2$ respectively. To move between $L_1$ and $L_2$, the system
+can do three things: emit a photon in the absence of a radiation field (spontaneous emission), absorb a photon (absorption),
+or emit a photon in the presence of a radiation field (stimulated emission). The transition probability per unit time of these three processes are atomic properties, characterized
+by the Einstein coefficients $A_{21}$, $B_{12}$, and $B_{21}$ respectively. The relations between these coefficients are: 
 
 \begin{equation}
   g_1 B_{12} = g_2 B_{21}
   \label{einstein-B}
 \end{equation}
 
-Notice that the temperature dependence drops,
-so the Einstein relations hold even outside of
-thermal equilibrium.
+\begin{equation}
+  \frac{A_{21}}{B_{21}} = \frac{2 h \nu^3}{c^2}
+  \label{einstein-A}
+\end{equation}
+
+To derive these relations, one invokes three consequences of thermodynamic equilibrium. 
+The first is that the number of transitions into an atomic state is equal to the number of transitions out of that state:
+
+\begin{equation}
+  n_1 B_{12} \bar{J} = n_2 B_{21} \bar{J} + n_2 A_{21}
+  \label{detailed-balance}
+\end{equation}
+
+where $\bar{J}$ is the intensity of the radiation field
+weighted by the importance of different frequencies
+in causing transitions (in practice, ``weighted" means
+integrated over the line profile function):
+
+\begin{equation}
+  \bar{J} \equiv \int_0^\infty J_\nu \, \phi(\nu) \, d\nu
+  \label{jbar}
+\end{equation}
+
+The second is that the relative number densities in the two levels are governed by the Boltzmann Equation:
+
+\begin{equation}
+  \frac{n_1}{n_2} = \frac{g_1}{g_2} \, e^{h \nu / k_B T}
+  \label{boltzmann-eq}
+\end{equation}
+
+And the third is that $J_\nu = B_\nu$ and, further, since
+$B_\nu$ varies slowly on $\Delta \nu$, that $\bar{J} = B_\nu$. 
+
+Note that even though we invoke thermal equilibrium to derive these relations, the relations themselves have no dependence on temperature and thus hold regardless of whether the atoms are in thermal equilibrium. They are an extension of the law governing matter in thermodynamic equilibrium on a macroscopic scale, known as...
 
 \textbf{Kirchoff's law for thermal equilibrium}
-describes the emitting and absorbing properties
-of a thermally emitting material that is exposed
-to blackbody radiation of intensity $B_\nu(T)$.
-``Thermally emitting'' means that the material's emission
-depends solely on its temperature and internal properties.
-More formally, this law is a relationship between
-the material's absorption coefficient $\alpha_\nu$,
-its emission coefficient $j_\nu$,
-and its temperature $T$:2
+says that a blob of material at thermal equilibrium
+(a blob whose emission depends solely on its temperature
+and internal properties)
+has a source function that obeys a blackbody spectrum.
+In other words, the emitting and absorbing properties
+of such a blob encourage radiation to approach
+the Planck function $B_\nu(T)$.
+More formally, this law relates
+the material's absorption coefficient $\alpha_\nu$
+to its emission coefficient $j_\nu$
+and its temperature $T$:
 
 \begin{equation}
   j_\nu = \alpha_\nu B_\nu (T)
@@ -226,56 +226,80 @@ and its temperature $T$:2
 \end{equation}
 
 This says that a good emitter is a good absorber, in
-thermal equilibrium. The moral of the story is that
-there is clearly a relationship between emission
-and absorption at a microscopic level.
-The picture you should have in your head is some
-thermally emitting material 
-sitting at the opening of a blackbody enclosure. 
-The source function of the material $S_\nu$ must equal
-the intensity of the blackbody radiation from the
-enclosure $B_\nu (T)$. 
+thermal equilibrium.
 
-The \textbf{Milne Relation} governs the inverse process
-of photoionization, that is an ion recapturing an electron
-and emitting a photon. Let $\sigma_{fb}$ be the cross-section
-for recapture. We assume complete thermal equilibrium
-and derive a result that will end up being independent of
-thermal equilibrium. 
+The \textbf{Milne Relations} govern the relationship between
+photoionization and its inverse, radiative recombination.
+In radiative recombination, an ion captures an electron
+into a bound state $n$ and emits a photon. 
+Just like we did for the Einstein relations
+we use four consequences of thermal equilibrium to
+derive a result that is independent of thermal equilibrium. 
 
-Thermal equilibrium dictates that the rate of radiative
-recombinations must equal the rate of photoionization.
+The first consequence
+is that the velocities of the electrons obey
+a thermal distribution:
 
+\begin{equation}
+f(v) = 4 \pi \left( \frac{m}{2 \pi kT} \right)^{3/2} v^2 e^{-mv^2 / 2 kT}
+\end{equation}
+
+The second consequence is that the intensity of the radiation field is the Planck function $B_\nu (T)$.
+
+The third consequence is that the relative number densities of ions $N_+$, electrons $N_e$, and neutron atoms $N_n$ are governed by the Saha equation:
+
+\begin{equation}
+\frac{N_+ N_e}{N_n} = \left( \frac{2 \pi m k T}{h^2} \right)^{3/2} \frac{g_e g_+}{g_n} e^{-\chi / kT} 
+\end{equation}
+
+Finally, the number of recombinations per time per volume due to thermal electrons is equal to the number of photoionizations per time per volume for a blackbody radiation field:
+
+\begin{equation}
+N_+ N_e \sigma_{fb} f(v) v dv = 
+\frac{4 \pi}{h \nu} N_n \sigma_{bf} (1-e^{-h\nu/kT}) B_\nu d\nu
+\end{equation}
+
+where $\sigma_{fb} (v)$ is the cross-section for recombination
+and $\sigma_{bf} (v)$ is the cross-section for photoionization.
+
+Using these four properties together, we obtain the Milne relation:
+
+\begin{equation}
+\frac{\sigma_{bf}}{\sigma_{fb}} = \left(\frac{mcv}{h\nu} \right)^2 \frac{g_e g_+}{2 g_n}
+\end{equation}
+
+
+Now, let's turn to the application of these relations
+to connecting \textbf{the Bremsstrahlung emission spectrum}
+to \textbf{the free-free absorption coefficient}.
 \textbf{Bremsstrahlung}, or \textbf{free-free emission},
-involves an electron whizzing by an ion. There is radiation
-emitted due to the acceleration of charge in the Coulomb field
-of another charge.
+is radiation due to the acceleration of a charge in the Coulomb field of another charge. For example, an electron under the influence of an ion's Coulomb field accelerates and radiates; the ion is much more massive than the electron and therefore its acceleration and radiation are negligible and for practical purposes its Coulomb field can be considered fixed.
 
-Remember, a good emitter is a good absorber. Using Kirchoff's Law,
+You need quantum mechanics to fully understand this process, because the energies of the photons produced are comparable to that of the particle being accelerated. However, in some regimes you can justify a classical treatment to achieve the correct functional dependence, then make up for leaving out quantum mechanics by tacking on corrections called Gaunt factors. 
 
-$$ j_\nu^{ff} = \alpha_\nu^{ff} B_\nu (T) $$
+One such regime is the small-angle scattering regime, in which the electron's path is basically straight because the electron is moving so rapidly. In this regime, you can calculate the change in the electron's energy over the course of the time it spends closely interacting with the ion. In thermal conditions, you can integrate the resulting emission spectrum over a thermal distribution of particle speeds. Here is the resulting emission spectrum for \emph{thermal Bremsstrahlung}:
 
 \begin{equation}
   \frac{dW}{dt dV dv} = \epsilon_\nu^{ff} = 4 \pi j_\nu^{ff} 
-  = 6.8 \times 10^{-38} T^{-1/2} Z^2 n_e n_i e^{h \nu / kT}
-  \bar{g}^{ff} (\nu,T)
-  \label{bremsstrahlung}
+  = 6.8 \times 10^{-38} \, T^{-1/2} Z^2 n_e n_i \, e^{h \nu / kT}
+  \, \bar{g}_{ff} (\nu,T)
+  \label{eq:bremsstrahlung}
 \end{equation}
 
-But you also have Kirchhoff's Law (thermal); both of these
-processes are happening because we're in thermal equilibrium.
-$S_\nu = B_\nu$, and $j_\nu = \alpha_\nu B_\nu$. 
+Now, we do what we did before: relate a macroscopic process to an atomic process. In this case, the atomic process is thermal free-free absorption, the absorption of radiation by an electron moving in the field of an ion. Kirchoff's law tells us that
+
+$$ j_\nu^{ff} = \alpha_\nu^{ff} B_\nu (T) $$
+
+Using Equation \ref{eq:bremsstrahlung} we can solve for $\alpha_\nu^{ff}$, the free-free absorption coefficient:
 
 \begin{equation}
-  \alpha_\nu^{ff} = 3.7 \times 10^8 T^{-1/2} Z^2 n_e n_i \nu^{-3}
-  (1-e^{-h\nu/kT}) g^{ff}
+\alpha_\nu^{ff} = 3.7 \times 10^8 \, T^{-1/2} Z^2 n_e n_i \nu^{-3} \, (1-e^{-h\nu/kT}) \, \bar{g}_{ff}
 \end{equation}
 
-In the Wien limit, you get $\alpha_\nu^{ff} \propto \nu^{-3} T_{-1/2}$.
-In the RJ limit, you get $\alpha_\nu^{ff} \propto \nu^{-2} T^{-3/2}$.
-
-So, you preferantially absorb low-energy electrons.
-
+In the Wien limit, $\alpha_\nu^{ff} \propto \nu^{-3}$.
+In the RJ limit, $\alpha_\nu^{ff} \propto \nu^{-2}$.
+So, low energy (low frequency) electrons are
+preferentially absorbed. 
 
   \item Draw the energy levels of the hydrogen atom and 
     identify which transitions are allowed. 
